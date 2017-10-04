@@ -1,0 +1,47 @@
+#include <iostream>
+using namespace std;
+
+
+// using recursion method
+int fibs (int n)
+{
+    if(n==0)
+        return 0;
+    if(n==1)
+        return 1;
+    return fibs(n-1)+fibs(n-2);
+}
+
+
+//top down method : recursion + memoization
+long fibonacci(long n,long *dp)
+{
+    if(n==1 || n==0){
+        dp[n] = n;
+        return n;
+    }
+    //already computed
+    if(dp[n]!=-1){
+        return dp[n];
+    }
+    // computed fibonacci number
+    else{
+        dp[n] = fibonacci(n-1,dp) + fibonacci(n-2,dp);
+        return dp[n];
+    }
+}
+
+
+int main() {
+    
+   
+   long fib[100];
+   for(int i = 0 ;i<100;i++)
+   {
+       fib[i] = -1;
+   }
+   
+   cout << "top down value is :" << fibonacci(100,fib) << endl;
+   
+    cout << fibs(45) << endl;
+}
