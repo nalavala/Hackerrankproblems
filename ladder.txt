@@ -1,0 +1,127 @@
+/* ladders problems using dynamic programming technique
+    By N.V.Revanth Reddy on 10/4/2017   */
+#include <iostream>
+using namespace std;
+
+/*recursion method to find no of steps
+   time complexity = o(k^n)
+    if k = 2 and n = 10
+   time complexity = 2^10 = 1024 units of time*/
+
+int noOfSteps(int n)
+{
+    
+    //ground
+    if(n==0 )
+        return 1;
+        
+    //no underground
+    if(n<0)
+        return 0;
+    return noOfSteps(n-1) + noOfSteps(n-2) + noOfSteps(n-3);
+    
+}
+
+
+//recursion + memoziation
+// time complexity = o(kn)
+int ways(int n,int *a)
+{
+    if(n == 0)
+        return 1;
+    if(n<0)
+        return 0;
+    if(a[n] != -1)
+        return a[n];
+    else
+        a[n] = ways(n-1,a) + ways(n-2,a) + ways(n-3,a);
+    return a[n];
+}
+
+// for k steps
+ 
+int ways2(int n,int k)
+{
+    if(n == 0)
+        return 1;
+    if(n<0)
+        return 0;
+    int ans = 0;
+    for(int i=1;i<=k;i++)
+    {
+        ans += ways2(n-i,k);
+    }
+    return ans;
+}
+
+/*dynamic programming - bottom up
+time complexity = o(kn)
+   if k = 2 and n = 10
+   time complexity = 2*10 = 20 units of time */
+int waysBU(int n,int k)
+{
+    int *a = new int[n+1];
+    a[0] = 1;
+    
+    for(int step =1;step<=n;step++)
+    {
+        a[step] = 0;
+        for(int j =1;j<=k;j++)
+        {
+            // array index testing
+            if((step - j) >=0)
+            a[step] += a[step - j];
+        }
+    }
+    
+    return a[n];
+    
+}
+
+/*dynamic programming - bottom up
+time complexity = o(kn)
+   if k = 2 and n = 10
+   time complexity = 2*10 = 20 units of time */
+int bu(int n,int k)
+{
+    int *a = new int[n+1];
+    a[0] = 1;
+    
+    for(int step =1;step<=n;step++)
+    {
+       
+       a[step] = 2 * a[step-1] - a[step-k];
+    }
+    
+    return a[n];
+}
+
+int main()
+{
+    /*int n = noOfSteps(10);
+    cout << n << endl;
+    
+    int *a = new int[1000];
+    //int size = sizeof(a)/sizeof(int);
+    for(int i=0;i<1000;i++)
+    {
+        a[i] = -1;
+    }
+    cout << ways(10,a) << endl;*/
+    
+    /*cout << ways2(3,2) << endl;
+    cout << ways2(4,3) << endl;
+    cout << ways2(5,4) << endl;*/
+    
+    cout << waysBU(3,2) << endl;
+    cout << waysBU(4,3) << endl;
+    cout << waysBU(5,4) << endl;
+    
+   /* cout << bu(3,2) << endl;
+    cout << bu(4,3) << endl;
+    cout << bu(5,4) << endl;*/
+    
+    return 0;
+}
+
+
