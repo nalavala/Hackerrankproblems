@@ -26,6 +26,7 @@ long fibonacci(long n,long *dp)
     }
     // computed fibonacci number
     else{
+        // memoization
         dp[n] = fibonacci(n-1,dp) + fibonacci(n-2,dp);
         return dp[n];
     }
