@@ -1,0 +1,24 @@
+import java.util.*;
+public class Main {
+    public static void main(String args[]) {
+        
+        Scanner scan = new Scanner(System.in);
+        String s = scan.next();
+        char[] a = s.toCharArray();
+        //System.out.println(a);
+        int i =0;
+        if(a[i] == '9')
+        {
+            i++;
+        }
+       for(;i<a.length;i++)
+       {
+           int n = a[i] - '0';
+           if(n >= 5)
+                n = 9-n;
+            a[i] = (char)(n + '0');
+       }
+       System.out.println(a);
+        
+    }
+}
