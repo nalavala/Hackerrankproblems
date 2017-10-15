@@ -1,0 +1,29 @@
+import java.util.*;
+class solution{
+	public static void arrangeArray(int[] a, int size) {
+		int even =0;
+      int odd = 1;
+      while(true){
+        while(even < size && a[even]%2==0)
+          even+=2;
+        while(odd < size && a[odd]%2==1)
+          odd+=2;
+        
+        if(odd < size && even < size){
+          int temp = a[odd];
+          a[odd] = a[even];
+          a[even] = temp;
+        }
+        else
+          break;
+        
+     }
+	}
+	
+	public static void main(String args[])
+	{
+	    int a[] = {8,7,5,3,0,6,4};
+	    arrangeArray(a,7);
+	    System.out.println(Arrays.toString(a));
+	}
+}
