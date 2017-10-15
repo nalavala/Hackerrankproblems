@@ -1,9 +1,9 @@
 import java.util.*;
 class solution{
 	public static void arrangeArray(int[] a, int size) {
-		int even =0;
-      int odd = 1;
-      while(true){
+		 int even =0;
+     		 int odd = 1;
+       while(true){
         while(even < size && a[even]%2==0)
           even+=2;
         while(odd < size && a[odd]%2==1)
@@ -13,12 +13,12 @@ class solution{
           int temp = a[odd];
           a[odd] = a[even];
           a[even] = temp;
-        }
+         }
         else
           break;
         
-     }
-	}
+      }
+}
 	
 	public static void main(String args[])
 	{
