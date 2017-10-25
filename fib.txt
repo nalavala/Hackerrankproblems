@@ -45,4 +45,5 @@ int main() {
    cout << "top down value is :" << fibonacci(100,fib) << endl;
    
     cout << fibs(45) << endl;
+    delete [] fib;
 }
